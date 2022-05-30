@@ -1,6 +1,6 @@
 # dotfiles-testing
 
-[![Build Status](https://travis-ci.com/valbeat/dotfiles-testing.svg?branch=master)](https://travis-ci.com/valbeat/dotfiles-testing)
+[![Build Status](https://app.travis-ci.com/valbeat/dotfiles-testing.svg?branch=main)](https://app.travis-ci.com/valbeat/dotfiles-testing)
 
 ## Contribution
 
