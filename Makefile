@@ -18,7 +18,6 @@ deploy: ## Create symlink to home directory
 .PHONY: init
 ifeq ($(shell uname),Linux)
 init: ## Setup environment settings
-	-@brew update
 	-@brew bundle --file=.brewfile.linux
 	-@yes | `brew --prefix`/opt/fzf/install
 else
