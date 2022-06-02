@@ -9,16 +9,16 @@ git:
   submodules: false
 
 before_install:
-  - git clone https://github.com/valbeat/dotfiles.git ./dotfiles
+  - git clone --depth=1 --recurse-submodules --shallow-submodules -j4 https://github.com/valbeat/dotfiles.git ./dotfiles
   - rm -rf dotfiles/.git
   - mv ./dotfiles/.[^\.]* .
-  - travis_wait 30 docker build -t dotfiles:${TRAVIS_BUILD_NUMBER} .
+  - travis_wait 30 docker build -t valbeat/dotfiles:${TRAVIS_BUILD_NUMBER} .
 
 script:
   # FIXME: `__zplug::job::message::red:3: character not in range`
-  - docker run --rm -it dotfiles zsh -c "source ~/.zshrc || source ~/.zshrc"
+  - docker run --rm -it valbeat/dotfiles zsh -c "source ~/.zshrc || source ~/.zshrc"
 
 after_success:
  - docker login -u="${DOCKER_USERNAME}" -p="${DOCKER_PASSWORD}"
- - docker tag dotfiles:${TRAVIS_BUILD_NUMBER} dotfiles:latest
- - docker push dotfiles:latest
+ - docker tag valbeat/dotfiles:${TRAVIS_BUILD_NUMBER} valbeat/dotfiles:latest
+ - docker push valbeat/dotfiles:latest
