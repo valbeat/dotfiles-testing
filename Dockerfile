@@ -43,9 +43,6 @@ RUN groupadd ${USERNAME} \
 
 USER ${USERNAME}
 
-RUN set -eux \
-  && brew update
-
 # Copy dotfiles
 COPY --chown=dotfiles-sandbox:dotfiles-sandbox ./dotfiles /home/dotfiles-sandbox/dotfiles
 WORKDIR /home/dotfiles-sandbox
