@@ -9,8 +9,7 @@ git:
   submodules: false
 
 before_install:
-  - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
-  - git submodule update --init --recursive
+  - git clone git@github.com:valbeat/dotfiles.git .
   - docker build -t ${DOCKER_IMAGE}:${TRAVIS_BUILD_NUMBER} .
 
 script:
