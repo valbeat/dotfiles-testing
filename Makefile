@@ -32,23 +32,8 @@ run: ## Run dotfiles and init scripts
 	@echo ""
 	@docker run -it -v $(DOTPATH):/home/dotfiles-sandbox/dotfiles valbeat/dotfiles-sandbox:latest /bin/zsh
 
-.PHONY: test
-test: deploy init ## Test for successful initialization
-
-.PHONY: update
-update: ## Fetch changes for this repo
-	@git pull origin master
-	@git submodule update --init
-	@git submodule foreach git pull origin master
-
 .PHONY: install
 install: clean deploy init ## Run make deploy, init
-
-.PHONY: backup
-backup: ## Copy target dotfiles to repository
-	@echo "Start to backup dotfiles to repository."
-	@echo ""
-	-@$(foreach dotfile, $(DOTFILES), cp -rn $(abspath $(HOME)/$(dotfile) $(DOTPATH)/$(dotfile));)
 
 .PHONY: clean
 clean: ## Copy target dotfiles to repository
