@@ -44,7 +44,7 @@ RUN groupadd ${USERNAME} \
 USER ${USERNAME}
 
 # Copy dotfiles
-COPY --chown=dotfiles-sandbox:dotfiles-sandbox ./dotfiles /home/dotfiles-sandbox/dotfiles
+COPY --chown=dotfiles-sandbox:dotfiles-sandbox . /home/dotfiles-sandbox/dotfiles
 WORKDIR /home/dotfiles-sandbox
 
 RUN cd dotfiles \
