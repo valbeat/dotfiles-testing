@@ -1,6 +1,6 @@
 DOTPATH    := $(realpath $(dir $(lastword $(MAKEFILE_LIST))))
 CANDIDATES := $(wildcard .??*)
-EXCLUSIONS := .DS_Store .git .gitmodules .travis.yml
+EXCLUSIONS := .git .gitmodules
 DOTFILES   := $(filter-out $(EXCLUSIONS), $(CANDIDATES))
 
 .DEFAULT_GOAL := help
@@ -15,17 +15,6 @@ deploy: ## Create symlink to home directory
 	@echo ""
 	@$(foreach dotfile, $(DOTFILES), ln -sfnv $(abspath $(DOTPATH)/$(dotfile) $(HOME)/$(dotfile));)
 
-.PHONY: init
-ifeq ($(shell uname),Linux)
-init: ## Setup environment settings
-	-@brew bundle --file=.brewfile.linux
-	-@yes | `brew --prefix`/opt/fzf/install
-else
-init:
-	-@brew bundle --file=.brewfile.osx
-	-@yes | `brew --prefix`/opt/fzf/install
-endif
-
 .PHONY: run
 run: ## Run dotfiles and init scripts
 	@echo "Start to run dotfiles in docker container."
@@ -33,7 +22,7 @@ run: ## Run dotfiles and init scripts
 	@docker run -it -v $(DOTPATH):/home/dotfiles-sandbox/dotfiles valbeat/dotfiles-sandbox:latest /bin/zsh
 
 .PHONY: install
-install: clean deploy init ## Run make deploy, init
+install: clean deploy ## Run make deploy
 
 .PHONY: clean
 clean: ## Copy target dotfiles to repository
