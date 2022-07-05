@@ -1,5 +1,9 @@
 name: Test
-on: [push]
+on:
+  push:
+  repository_dispatch:
+    types: 
+      - dotfiles-updated
 jobs:
   build_and_push:
     runs-on: ubuntu-latest
