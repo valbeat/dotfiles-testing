@@ -23,7 +23,7 @@ jobs:
       - name: Run tests
         run: | 
           # FIXME: `__zplug::job::message::red:3: character not in range`
-          docker run --rm -it valbeat/dotfiles:${{ github.sha }}  zsh -c "source ~/.zshrc || source ~/.zshrc"
+          docker run --rm valbeat/dotfiles:${{ github.sha }} zsh -c "source ~/.zshrc || source ~/.zshrc"
 
       - name: Push sandbox image
         run: docker push valbeat/dotfiles:${{ github.sha }}
