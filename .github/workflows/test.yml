@@ -21,6 +21,7 @@ jobs:
         run: |
           git clone --depth=1 --recurse-submodules --shallow-submodules -j4 https://github.com/valbeat/dotfiles.git ./dotfiles
           rm -rf ./dotfiles/.git
+          rm -rf ./dotfiles/.github
           mv ./dotfiles/.[^\.]* .
           docker build -t valbeat/dotfiles:${{ github.sha }} .
 
