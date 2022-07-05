@@ -19,6 +19,6 @@ jobs:
           mv ./dotfiles/.[^\.]* .
           docker build -t valbeat/dotfiles:${{ github.sha }} .
           # FIXME: `__zplug::job::message::red:3: character not in range`
-          docker run --rm -it valbeat/dotfiles:${{ gtihub.sha }}  zsh -c "source ~/.zshrc || source ~/.zshrc"
+          docker run --rm -it valbeat/dotfiles:${{ github.sha }}  zsh -c "source ~/.zshrc || source ~/.zshrc"
           docker push valbeat/dotfiles:${{ github.sha }}
 
