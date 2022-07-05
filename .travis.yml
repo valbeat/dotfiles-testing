@@ -10,7 +10,7 @@ git:
 
 script:
   - git clone --depth=1 --recurse-submodules --shallow-submodules -j4 https://github.com/valbeat/dotfiles.git ./dotfiles
-  - rm -rf dotfiles/.git
+  - rm -rf ./dotfiles/.git
   - mv ./dotfiles/.[^\.]* .
   - travis_wait 30 docker build -t valbeat/dotfiles:${TRAVIS_BUILD_NUMBER} .
   # FIXME: `__zplug::job::message::red:3: character not in range`
