@@ -13,12 +13,13 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Clone Dotfiles repo
-        run: git clone --depth=1 --recurse-submodules --shallow-submodules -j4 https://github.com/valbeat/dotfiles.git ./dotfiles
-        run: rm -rf ./dotfiles/.git
-        run: mv ./dotfiles/.[^\.]* .
-        run: travis_wait 30 docker build -t valbeat/dotfiles:${GITHUB_REF} .
-        # FIXME: `__zplug::job::message::red:3: character not in range`
-        run: docker run --rm -it valbeat/dotfiles:${GITHUB_REF}  zsh -c "source ~/.zshrc || source ~/.zshrc"
-        run: docker tag valbeat/dotfiles:${GITHUB_REF} valbeat/dotfiles:${GITHUB_REF}
-        run: docker push valbeat/dotfiles:${GITHUB_REF}
+        run: |
+          git clone --depth=1 --recurse-submodules --shallow-submodules -j4 https://github.com/valbeat/dotfiles.git ./dotfiles
+          rm -rf ./dotfiles/.git
+          mv ./dotfiles/.[^\.]* .
+          travis_wait 30 docker build -t valbeat/dotfiles:${GITHUB_REF} .
+          # FIXME: `__zplug::job::message::red:3: character not in range`
+          docker run --rm -it valbeat/dotfiles:${GITHUB_REF}  zsh -c "source ~/.zshrc || source ~/.zshrc"
+          docker tag valbeat/dotfiles:${GITHUB_REF} valbeat/dotfiles:${GITHUB_REF}
+          docker push valbeat/dotfiles:${GITHUB_REF}
 
