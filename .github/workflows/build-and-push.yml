@@ -17,7 +17,7 @@ jobs:
           git clone --depth=1 --recurse-submodules --shallow-submodules -j4 https://github.com/valbeat/dotfiles.git ./dotfiles
           rm -rf ./dotfiles/.git
           mv ./dotfiles/.[^\.]* .
-          travis_wait 30 docker build -t valbeat/dotfiles:${GITHUB_REF} .
+          docker build -t valbeat/dotfiles:${GITHUB_REF} .
           # FIXME: `__zplug::job::message::red:3: character not in range`
           docker run --rm -it valbeat/dotfiles:${GITHUB_REF}  zsh -c "source ~/.zshrc || source ~/.zshrc"
           docker tag valbeat/dotfiles:${GITHUB_REF} valbeat/dotfiles:${GITHUB_REF}
