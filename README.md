@@ -1,6 +1,6 @@
 # dotfiles-testing
 
-[![Build Status](https://github.com/valbeat/dotfiles-testing/actions/workflows/build-and-push.yml/badge.svg)](https://github.com/valbeat/dotfiles-testing/actions/workflows/build-and-push.yml)
+[![Test](https://github.com/valbeat/dotfiles-testing/actions/workflows/test.yml/badge.svg)](https://github.com/valbeat/dotfiles-testing/actions/workflows/test.yml)
 
 ## Contribution
 
