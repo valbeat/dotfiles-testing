@@ -1,6 +1,6 @@
 # dotfiles-testing
 
-[![Build Status](https://app.travis-ci.com/valbeat/dotfiles-testing.svg?branch=main)](https://app.travis-ci.com/valbeat/dotfiles-testing)
+[![Build Status](https://github.com/valbeat/dotfiles-testing/actions/workflows/build-and-push.yml/badge.svg)](https://github.com/valbeat/dotfiles-testing/actions/workflows/build-and-push.yml)
 
 ## Contribution
 
