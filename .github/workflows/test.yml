@@ -1,4 +1,4 @@
-name: Build and Push
+name: Test
 on: [push]
 jobs:
   build_and_push:
