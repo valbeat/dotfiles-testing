@@ -3,7 +3,7 @@ on:
   push:
   repository_dispatch:
     types: 
-      - dotfiles-updated
+      - dotfiles updated
 jobs:
   build_and_push:
     runs-on: ubuntu-latest
