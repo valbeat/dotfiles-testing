@@ -1,9 +1,7 @@
 name: Test
 on:
-  push:
-  repository_dispatch:
-    types: 
-      - dotfiles updated
+  schedule:
+    - cron:  '0 * * * *'
 jobs:
   build_and_push:
     runs-on: ubuntu-latest
