@@ -22,8 +22,7 @@ jobs:
         run: |
           git clone --depth=1 --recurse-submodules --shallow-submodules -j4 https://github.com/valbeat/dotfiles.git ./dotfiles
           cd ./dotfiles
-          COMMIT_HASH=`git rev-parse HEAD`
-          echo "commit_hash=$COMMIT_HASH" >> $GITHUB_ENV
+          echo "commit_hash=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
           rm -rf .git
           rm -rf .github
           mv ./.[^\.]* ..
