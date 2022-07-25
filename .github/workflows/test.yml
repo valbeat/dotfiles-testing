@@ -27,12 +27,12 @@ jobs:
           rm -rf ./dotfiles/.git
           rm -rf ./dotfiles/.github
           mv ./dotfiles/.[^\.]* .
-          docker build -t valbeat/dotfiles:$COMMIT_HASH .
+          docker build -t valbeat/dotfiles:${COMMIT_HASH} .
 
       - name: Run tests
         run: |
-          docker run --rm valbeat/dotfiles:$COMMIT_HASH zsh -c "source ~/.zshrc"
+          docker run --rm valbeat/dotfiles:${COMMIT_HASH} zsh -c "source ~/.zshrc"
 
       - name: Push sandbox image
         run: |
-          docker push valbeat/dotfiles:$COMMIT_HASH
+          docker push valbeat/dotfiles:${COMMIT_HASH}
