@@ -18,7 +18,7 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Build sandbox image
+      - name: Clone dotfiles
         run: |
           git clone --depth=1 --recurse-submodules --shallow-submodules -j4 https://github.com/valbeat/dotfiles.git ./dotfiles
           cd ./dotfiles
@@ -29,11 +29,14 @@ jobs:
           rm -rf ./dotfiles/.git
           rm -rf ./dotfiles/.github
           mv ./dotfiles/.[^\.]* .
-          docker build -t valbeat/dotfiles:$DOTFILES_HASH .
+
+      - name: Build sandbox image
+        run: |
+          docker build -t valbeat/dotfiles:${{ env.dotfiles_hash }} .
 
       - name: Run tests
         run: |
-          docker run --rm valbeat/dotfiles:${{ env.dotfiles_hash }} zsh -c "source ~/.zshrc"
+          docker run --rm valbeat/dotfiles:${{ env.dotfiles_hash }}
 
       - name: Push sandbox image
         run: |
