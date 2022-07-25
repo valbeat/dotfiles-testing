@@ -23,10 +23,10 @@ jobs:
           git clone --depth=1 --recurse-submodules --shallow-submodules -j4 https://github.com/valbeat/dotfiles.git ./dotfiles
           cd ./dotfiles
           echo "commit_hash=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
-          rm -rf .git
-          rm -rf .github
-          mv ./.[^\.]* ..
           cd ..
+          rm -rf ./dotfiles/.git
+          rm -rf ./dotfiles/.github
+          mv ./dotfiles/.[^\.]* .
           docker build -t valbeat/dotfiles:${{ github.commit_hash }} .
 
       - name: Run tests
