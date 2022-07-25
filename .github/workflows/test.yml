@@ -22,17 +22,17 @@ jobs:
         run: |
           git clone --depth=1 --recurse-submodules --shallow-submodules -j4 https://github.com/valbeat/dotfiles.git ./dotfiles
           cd ./dotfiles
-          echo "commit_hash=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
+          echo "COMMIT_HASH=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
           cd ..
           rm -rf ./dotfiles/.git
           rm -rf ./dotfiles/.github
           mv ./dotfiles/.[^\.]* .
-          docker build -t valbeat/dotfiles:${{ env.commit_hash }} .
+          docker build -t valbeat/dotfiles:${{ COMMIT_HASH }} .
 
       - name: Run tests
         run: |
-          docker run --rm valbeat/dotfiles:${{ github.commit_hash }} zsh -c "source ~/.zshrc"
+          docker run --rm valbeat/dotfiles:${{ COMMIT_HASH }} zsh -c "source ~/.zshrc"
 
       - name: Push sandbox image
         run: |
-          docker push valbeat/dotfiles:${{ github.commit_hash }}
+          docker push valbeat/dotfiles:${{ COMMIT_HASH }}
