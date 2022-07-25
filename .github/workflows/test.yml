@@ -28,6 +28,9 @@ jobs:
           rm -rf ./dotfiles/.git
           rm -rf ./dotfiles/.github
           mv ./dotfiles/.[^\.]* .
+          echo $GITHUB_ENV
+          echo $COMMIT_HASH
+          echo ${{ env.COMMIT_HASH }}
           docker build -t valbeat/dotfiles:${{ env.COMMIT_HASH }} .
 
       - name: Run tests
