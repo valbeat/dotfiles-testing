@@ -23,15 +23,14 @@ jobs:
           git clone --depth=1 --recurse-submodules --shallow-submodules -j4 https://github.com/valbeat/dotfiles.git ./dotfiles
           cd ./dotfiles
           echo $(git rev-parse --short HEAD)
-          echo COMMIT_HASH=bcdd93c >> $GITHUB_ENV
+          echo "dotfiles_hash=bcdd93c" >> $GITHUB_ENV
           cd ..
           rm -rf ./dotfiles/.git
           rm -rf ./dotfiles/.github
           mv ./dotfiles/.[^\.]* .
           cat $GITHUB_ENV
-          echo $COMMIT_HASH
-          echo ${{ env.COMMIT_HASH }}
-          docker build -t valbeat/dotfiles:${{ env.COMMIT_HASH }} .
+          echo ${{ env.dotfiles_hash }}
+          docker build -t valbeat/dotfiles:${{ env.dotfiles_hash }} .
 
       - name: Run tests
         run: |
