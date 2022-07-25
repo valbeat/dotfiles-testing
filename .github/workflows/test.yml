@@ -26,7 +26,7 @@ jobs:
           echo "commit_hash=$COMMIT_HASH" >> $GITHUB_ENV
           rm -rf .git
           rm -rf .github
-          mv ./dotfiles/.[^\.]* .
+          mv ./.[^\.]* ..
           docker build -t valbeat/dotfiles:${{ github.commit_hash }} .
 
       - name: Run tests
