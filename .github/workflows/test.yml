@@ -23,7 +23,7 @@ jobs:
           git clone --depth=1 --recurse-submodules --shallow-submodules -j4 https://github.com/valbeat/dotfiles.git ./dotfiles
           cd ./dotfiles
           echo $(git rev-parse --short HEAD)
-          echo COMMIT_HASH=$(git rev-parse --short HEAD) >> $GITHUB_ENV
+          echo COMMIT_HASH=bcdd93c >> $GITHUB_ENV
           cd ..
           rm -rf ./dotfiles/.git
           rm -rf ./dotfiles/.github
