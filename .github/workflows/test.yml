@@ -27,6 +27,7 @@ jobs:
           rm -rf .git
           rm -rf .github
           mv ./.[^\.]* ..
+          cd ..
           docker build -t valbeat/dotfiles:${{ github.commit_hash }} .
 
       - name: Run tests
